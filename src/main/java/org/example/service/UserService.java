@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
     Long create(NewUserRequest request);
     List<UserDto> readAll();
-    UserDto readById(Long id);
+    UserDto read(Long id);
     UserDto update(UpdateUserRequest request);
     void delete(Long id);
 }

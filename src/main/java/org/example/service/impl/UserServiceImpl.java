@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto readById(Long id) {
+    public UserDto read(Long id) {
         if(!userRepo.exitsById(id)) throw new BadRequestException("Invalid ID!");
         return userMapper.toDto(userRepo.findById(id).get());
     }
@@ -71,7 +71,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
-        if(!userRepo.exitsById(id)) throw new BadRequestException("Invalid ID!");
         userRepo.deleteById(id);
     }
 
