@@ -1,13 +1,10 @@
 package org.example.service.impl;
 
 import org.example.exception.BadRequestException;
-import org.example.map.dto.UserDto;
-import org.example.map.mapper.RoleMapper;
-import org.example.map.mapper.RoleMapperImpl;
+import org.example.map.dto.UserResponse;
 import org.example.map.mapper.UserMapper;
 import org.example.map.mapper.UserMapperImpl;
-import org.example.map.request.newRequest.NewUserRequest;
-import org.example.map.request.updateRequest.UpdateUserRequest;
+import org.example.map.request.UserRequest;
 import org.example.model.User;
 import org.example.repo.RoleRepo;
 import org.example.repo.UserRepo;
@@ -33,8 +30,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Long create(NewUserRequest request) {
-        if(!checkNewRequest(request)) throw new BadRequestException("Invalid fields!");
+    public Long post(UserRequest request) {
+        if (!checkNewRequest(request)) throw new BadRequestException("Invalid fields!");
 
         User user = userMapper.toModel(request);
         user.setRole(roleRepo.findById(1L).get());
@@ -44,29 +41,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> readAll() {
+    public List<UserResponse> getAll() {
         List<User> users = userRepo.findAll();
         return users.stream()
-                .map(userMapper::toDto)
+                .map(userMapper::toResponse)
                 .toList();
     }
 
     @Override
-    public UserDto read(Long id) {
-        if(!userRepo.exitsById(id)) throw new BadRequestException("Invalid ID!");
-        return userMapper.toDto(userRepo.findById(id).get());
+    public UserResponse get(Long id) {
+        if (!userRepo.exitsById(id)) throw new BadRequestException("Invalid ID!");
+        return userMapper.toResponse(userRepo.findById(id).get());
     }
 
     @Override
-    public UserDto update(UpdateUserRequest request) {
-        if(!checkUpdateRequest(request)) throw new BadRequestException("Invalid Fields!");
+    public UserResponse edit(Long id, UserRequest request) {
+        if (!checkUpdateRequest(request)) throw new BadRequestException("Invalid Fields!");
         User user = userMapper.toModel(request);
-        if(userRepo.exitsById(user.getId())){
+        user.setId(id);
+        if (userRepo.exitsById(id)) {
             userRepo.update(user);
-        }
-        else user = userRepo.save(user);
+        } else user = userRepo.save(user);
 
-        return userMapper.toDto(user);
+        return userMapper.toResponse(user);
     }
 
     @Override
@@ -74,15 +71,13 @@ public class UserServiceImpl implements UserService {
         userRepo.deleteById(id);
     }
 
-    private boolean checkNewRequest(NewUserRequest request){
+    private boolean checkNewRequest(UserRequest request) {
         return (!request.getFirstName().isEmpty() &&
                 !request.getLastName().isEmpty());
     }
 
-    private boolean checkUpdateRequest(UpdateUserRequest request){
-        return ((request.getId() != null) &&
-                !request.getFirstName().isEmpty() &&
-                !request.getLastName().isEmpty() &&
-                (request.getRole() != null));
+    private boolean checkUpdateRequest(UserRequest request) {
+        return !request.getFirstName().isEmpty() &&
+                !request.getLastName().isEmpty();
     }
 }

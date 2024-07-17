@@ -1,15 +1,9 @@
 package org.example.service;
 
-import org.example.map.dto.UserDto;
-import org.example.map.request.newRequest.NewUserRequest;
-import org.example.map.request.updateRequest.UpdateUserRequest;
+import org.example.map.dto.UserResponse;
+import org.example.map.request.UserRequest;
 
 import java.util.List;
 
-public interface UserService {
-    Long create(NewUserRequest request);
-    List<UserDto> readAll();
-    UserDto read(Long id);
-    UserDto update(UpdateUserRequest request);
-    void delete(Long id);
+public interface UserService extends Service<UserRequest, UserResponse> {
 }
