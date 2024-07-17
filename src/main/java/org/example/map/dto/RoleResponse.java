@@ -1,15 +1,15 @@
-package org.example.map.request.updateRequest;
+package org.example.map.dto;
 
 import java.util.Objects;
 
-public class UpdateRoleRequest {
+public class RoleResponse {
     private Long id;
     private String name;
 
-    public UpdateRoleRequest() {
+    public RoleResponse() {
     }
 
-    public UpdateRoleRequest(Long id, String name) {
+    public RoleResponse(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -34,8 +34,8 @@ public class UpdateRoleRequest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UpdateRoleRequest that = (UpdateRoleRequest) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
+        RoleResponse roleDto = (RoleResponse) o;
+        return Objects.equals(id, roleDto.id) && Objects.equals(name, roleDto.name);
     }
 
     @Override

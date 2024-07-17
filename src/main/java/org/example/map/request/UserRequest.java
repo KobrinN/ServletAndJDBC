@@ -1,14 +1,14 @@
-package org.example.map.request.newRequest;
+package org.example.map.request;
 
 import java.util.Objects;
 
-public class NewUserRequest {
+public class UserRequest {
     private String firstName;
     private String lastName;
 
-    public NewUserRequest() {}
+    public UserRequest() {}
 
-    public NewUserRequest(String firstName, String lastName) {
+    public UserRequest(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -33,7 +33,7 @@ public class NewUserRequest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NewUserRequest that = (NewUserRequest) o;
+        UserRequest that = (UserRequest) o;
         return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
     }
 

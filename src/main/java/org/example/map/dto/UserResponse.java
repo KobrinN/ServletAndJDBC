@@ -2,15 +2,15 @@ package org.example.map.dto;
 
 import java.util.Objects;
 
-public class UserDto {
+public class UserResponse {
     private Long id;
     private String firstName;
     private String lastName;
     private String role;
 
-    public UserDto() {}
+    public UserResponse() {}
 
-    public UserDto(Long id, String firstName, String lastName, String role) {
+    public UserResponse(Long id, String firstName, String lastName, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,7 +53,7 @@ public class UserDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserDto userDto = (UserDto) o;
+        UserResponse userDto = (UserResponse) o;
         return Objects.equals(id, userDto.id) && Objects.equals(firstName, userDto.firstName) && Objects.equals(lastName, userDto.lastName) && Objects.equals(role, userDto.role);
     }
 

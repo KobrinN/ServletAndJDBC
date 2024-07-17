@@ -1,14 +1,14 @@
-package org.example.map.request.newRequest;
+package org.example.map.request;
 
 import java.util.Objects;
 
-public class NewRoleRequest {
+public class RoleRequest {
     private String name;
 
-    public NewRoleRequest() {
+    public RoleRequest() {
     }
 
-    public NewRoleRequest(String name) {
+    public RoleRequest(String name) {
         this.name = name;
     }
 
@@ -24,7 +24,7 @@ public class NewRoleRequest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NewRoleRequest that = (NewRoleRequest) o;
+        RoleRequest that = (RoleRequest) o;
         return Objects.equals(name, that.name);
     }
 

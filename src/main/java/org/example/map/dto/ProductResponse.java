@@ -1,18 +1,18 @@
-package org.example.map.request.updateRequest;
+package org.example.map.dto;
 
 import java.util.Objects;
 
-public class UpdateProductRequest {
+public class ProductResponse {
     private Long id;
     private String name;
     private Long quantity;
     private Long numberOfSold;
     protected Double price;
 
-    public UpdateProductRequest() {
+    public ProductResponse() {
     }
 
-    public UpdateProductRequest(Long id, String name, Long quantity, Long numberOfSold, Double price) {
+    public ProductResponse(Long id, String name, Long quantity, Long numberOfSold, Double price) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -64,8 +64,8 @@ public class UpdateProductRequest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UpdateProductRequest that = (UpdateProductRequest) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(quantity, that.quantity) && Objects.equals(numberOfSold, that.numberOfSold) && Objects.equals(price, that.price);
+        ProductResponse product = (ProductResponse) o;
+        return Objects.equals(id, product.id) && Objects.equals(name, product.name) && Objects.equals(quantity, product.quantity) && Objects.equals(numberOfSold, product.numberOfSold) && Objects.equals(price, product.price);
     }
 
     @Override
